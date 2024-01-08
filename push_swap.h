@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:45:25 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/07 21:16:02 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:50:52 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ typedef struct s_list
 
 int		ft_array_len(char **array);
 void	ft_free_char_array(char **array);
-int		dup_check(void **array_int);
-int		*ft_make_array_int(int argc, char **argv);
+int		dup_check(int *array_int);
 int		ft_check_alpha(char **str);
-int		*ft_array_1(char **str)
+int		*ft_make_array_int(int argc, char **argv);
+int		*ft_array_1(char **str);
+int		*ft_array_2(char **argv);
 
 #endif

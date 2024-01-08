@@ -6,7 +6,7 @@
 #    By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 12:01:31 by linhnguy          #+#    #+#              #
-#    Updated: 2024/01/07 21:14:37 by linhnguy         ###   ########.fr        #
+#    Updated: 2024/01/08 14:44:55 by linhnguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ LIBFT = libft.a
 LIBFTDIR = libft
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
-SRCS = main.c ft_make_array_int.c push_swap_utils.c push_swap_utils2.c
+SRCS = ft_make_array_int.c push_swap_utils.c push_swap_utils2.c
 OBJS = $(SRCS:.c=.o)
 AR = ar rcs
 RM = rm -f

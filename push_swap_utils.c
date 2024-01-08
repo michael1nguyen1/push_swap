@@ -6,13 +6,13 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:39:05 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/07 20:12:29 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:50:38 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_array_len(char **array)
+int	ft_array_len(char **array)
 {
 	int	i;
 
@@ -22,7 +22,20 @@ int ft_array_len(char **array)
 	return (i);
 }
 
-int	dup_check(void **array_int)
+void	ft_free_char_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+int	dup_check(int *array_int)
 {
 	int	i;
 	int	j;
@@ -41,23 +54,12 @@ int	dup_check(void **array_int)
 	}
 	return (0);
 }
-void ft_free_array(char **array)
+
+int	ft_check_alpha(char **str)
 {
 	int	i;
+	int	j;
 
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-int ft_check_alpha(char **str)
-{
-	int		i;
-	int 	j;
-	
 	i = 0;
 	j = 0;
 	while (str[i])
