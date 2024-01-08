@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 15:45:25 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/01 16:09:12 by linhnguy         ###   ########.fr       */
+/*   Created: 2024/01/01 15:28:00 by linhnguy          #+#    #+#             */
+/*   Updated: 2024/01/08 14:20:13 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include <unistd.h>
+#include "push_swap.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-
-typedef struct s_list
+int	main(int argc, char **argv)
 {
-	int				num;
-	struct s_list	*next;
-	struct s_list	*prev;
-}	t_list;
+	int	*array_int;
 
-#endif
+	if (argc == 1 || (argc == 2 && argv[1][0] == '\0'))
+		return (ft_printf("Error\n"));
+	array_int = ft_make_array_int(argc, argv);
+	if (array_int == NULL)
+		return (ft_printf("Error\n"));
+	// ft_makelist();
+	// sorted = ft_push_swap();
+	// ft_print_list(sorted);
+	return (0);
+}
