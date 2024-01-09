@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:28:00 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/08 15:05:53 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:03:21 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	array_int = ft_make_array_int(argc, argv);
 	if (array_int == NULL)
 		return (ft_printf("Error\n"));
-	// ft_makelist();
+	ft_make_list(array_int);
 	// sorted = ft_push_swap();
 	// ft_print_list(sorted);
 	return (0);

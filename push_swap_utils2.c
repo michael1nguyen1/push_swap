@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 21:13:26 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/08 15:09:15 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:02:58 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	*ft_array_2(char **argv)
 		return (NULL);
 	while (argv[i])
 	{
-		check = ft_atoi(argv[i]);
+		check = ft_atol(argv[i]);
 		if (check > INT_MAX || check < INT_MIN)
 		{
 			free(array_int);
