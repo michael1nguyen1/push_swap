@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_get_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 15:28:00 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/12 20:15:56 by linhnguy         ###   ########.fr       */
+/*   Created: 2024/01/07 14:30:50 by linhnguy          #+#    #+#             */
+/*   Updated: 2024/01/12 20:03:05 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+t_push_list	*ft_get_list(int argc, char **argv)
 {
-	t_push_list		*list;
-	// int argc = 2;
-	// char *argv[] = {"wer", "wer" "NULL"};
+	int			i;
+	t_push_list	*list;
+	char		**str;
+	int			check;
 
-	if (argc == 1)
-		return (0);
-	if (argc == 2 && argv[1][0] == '\0')
-		return (ft_printf("Error\n"));
-	list = ft_get_list(argc, argv);
-	if (!list)
-		return (ft_printf("Error\n"));
-	while (list)
+	check = 0;
+	i = 0;
+	if (argc == 2)
 	{
-		ft_printf("%i\n", list->num);
-		list = list->next;
+		check = 1;
+		str = ft_split(argv[1], ' ');
+		if (str == NULL || ft_check(str, check) == -1)
+			free(str);
+		return (NULL);
+		list = ft_make_list(str);
+		free(str);
 	}
-	// sorted = ft_push_swap();
-	// ft_print_list(sorted);
-	return (0);
+	else
+	{
+		if (ft_check(&argv[1], check) == -1)
+			return (NULL);
+		list = ft_make_list(&argv[1]);
+		return (list);
+	}
 }

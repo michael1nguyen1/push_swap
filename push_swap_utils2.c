@@ -6,66 +6,60 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 21:13:26 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/09 13:02:58 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/12 20:07:46 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*ft_array_1(char **str)
+int	ft_check(char **str, int check)
+{
+	if (str == NULL)
+		return (-1);
+	if (dup_check(str) == -1)
+	{
+		if (check == 1)
+			free(str);
+		return (-1);
+	}
+	if (ft_check_alpha(str) == -1)
+		return (-1);
+	return (0);
+}
+
+
+// t_push_list	*ft_array_2(char **str)
+// {
+// 	int			i;
+// 	long		check;
+// 	t_push_list *list;
+// 	i = 0;
+// 	if (dup_check(str) == -1)
+// 	{
+// 		free(str);
+// 		return (NULL);
+// 	}
+// 	if (ft_check_alpha(str) == -1)
+// 	{
+// 		ft_free_char_array(str);
+// 		return (NULL);
+// 	}
+// 	list = ft_make_list(str);
+// 	ft_free_char_array(str);
+// 	return (list);
+// }	
+
+long	ft_int_to_list(char *str)
 {
 	int			i;
-	int			*array_int;
 	long		check;
 
 	i = 0;
-	str = ft_split(str[1], ' ');
-	if (str == NULL)
-		return (NULL);
-	if (ft_check_alpha(str) == -1)
+	check = ft_atol(str);
+	if (check > INT_MAX || check < INT_MIN)
 	{
-		ft_free_char_array(str);
-		return (NULL);
+		free(str);
+		return (-1);
 	}
-	array_int = malloc(sizeof(int) * ft_array_len(str));
-	if (array_int == NULL)
-		return (NULL);
-	while (str[i])
-	{
-		check = ft_atol(str[i]);
-		if (check > INT_MAX || check < INT_MIN)
-		{
-			free(array_int);
-			return (NULL);
-		}
-		array_int[i] = check;
-		i++;
-	}
-	ft_free_char_array(str);
-	return (array_int);
+	return (check);
 }
-
-int	*ft_array_2(char **argv)
-{
-	int		i;
-	long	check;
-	int		*array_int;
-
-	i = 0;
-	array_int = malloc(sizeof(int) * ft_array_len(argv));
-	if (array_int == NULL)
-		return (NULL);
-	while (argv[i])
-	{
-		check = ft_atol(argv[i]);
-		if (check > INT_MAX || check < INT_MIN)
-		{
-			free(array_int);
-			return (NULL);
-		}
-		array_int[i] = check;
-		i++;
-	}
-	return (array_int);
-}
-

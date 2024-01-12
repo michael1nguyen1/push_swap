@@ -6,16 +6,16 @@
 #    By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 12:01:31 by linhnguy          #+#    #+#              #
-#    Updated: 2024/01/08 14:44:55 by linhnguy         ###   ########.fr        #
+#    Updated: 2024/01/12 21:20:48 by linhnguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftpush.a
 LIBFT = libft.a
 LIBFTDIR = libft
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-SRCS = ft_make_array_int.c push_swap_utils.c push_swap_utils2.c
+SRCS = ft_get_list.c push_swap_utils.c push_swap_utils2.c ft_make_list.c
 OBJS = $(SRCS:.c=.o)
 AR = ar rcs
 RM = rm -f
@@ -26,6 +26,10 @@ $(NAME):$(OBJS)
 	@make -C $(LIBFTDIR)
 	cp $(LIBFTDIR)/$(LIBFT) $(NAME)
 	$(AR) $(NAME) $(OBJS)
+
+run: re
+	@cc main.c $(NAME) -o push_swap
+	@./push_swap 1 2 3 4 5
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:39:05 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/08 14:50:38 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/12 20:28:42 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ void	ft_free_char_array(char **array)
 	free(array);
 }
 
-int	dup_check(int *array_int)
+int	dup_check(char **array)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (array_int[i])
+	while (array[i])
 	{
 		j = i + 1;
-		while (array_int[j])
+		while (array[j])
 		{
-			if (array_int[i] == array_int[j])
+			if (ft_atol(array[i]) == ft_atol(array[j]))
 				return (-1);
 			j++;
 		}
@@ -62,6 +62,7 @@ int	ft_check_alpha(char **str)
 
 	i = 0;
 	j = 0;
+
 	while (str[i])
 	{
 		while (str[i][j])
