@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:45:25 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/12 20:06:41 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:27:04 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,13 @@ t_push_list		*ft_get_list(int argc, char **argv);
 int				ft_check(char **str, int check);
 long			ft_int_to_list(char *str);
 t_push_list		*ft_make_list(char **array_int);
+
+void			swap(t_push_list **list);
+void			push(t_push_list **list_a, t_push_list **list_b);
+void			rotate(t_push_list **list);
+void			reverse_rotate(t_push_list **list);
+
+t_push_list		*ft_lastnode(t_push_list *list);
+int				ft_check_sorted(t_push_list *list);
 
 #endif

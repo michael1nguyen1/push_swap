@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 21:13:26 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/12 20:07:46 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:15:09 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,6 @@ int	ft_check(char **str, int check)
 	return (0);
 }
 
-
-// t_push_list	*ft_array_2(char **str)
-// {
-// 	int			i;
-// 	long		check;
-// 	t_push_list *list;
-// 	i = 0;
-// 	if (dup_check(str) == -1)
-// 	{
-// 		free(str);
-// 		return (NULL);
-// 	}
-// 	if (ft_check_alpha(str) == -1)
-// 	{
-// 		ft_free_char_array(str);
-// 		return (NULL);
-// 	}
-// 	list = ft_make_list(str);
-// 	ft_free_char_array(str);
-// 	return (list);
-// }	
-
 long	ft_int_to_list(char *str)
 {
 	int			i;
@@ -62,4 +40,14 @@ long	ft_int_to_list(char *str)
 		return (-1);
 	}
 	return (check);
+}
+int ft_check_sorted(t_push_list *list)
+{
+	while (list->next != NULL)
+	{
+		if (list->num > list->next->num)
+			return (-1);
+		list = list->next;
+	}
+	return(0);
 }
