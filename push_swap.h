@@ -6,22 +6,28 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:45:25 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/25 20:27:04 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:09:21 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdio.h> // remove
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <limits.h>
-# include <stdio.h>
 # include "libft/libft.h"
 
 typedef struct s_list
 {
 	int				num;
+	int				index;
+	int 			cost;
+	bool			cheapest;
+	bool			median;
+	struct s_list	*target;
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_push_list;
@@ -35,12 +41,23 @@ int				ft_check(char **str, int check);
 long			ft_int_to_list(char *str);
 t_push_list		*ft_make_list(char **array_int);
 
-void			swap(t_push_list **list);
-void			push(t_push_list **list_a, t_push_list **list_b);
-void			rotate(t_push_list **list);
-void			reverse_rotate(t_push_list **list);
+void 			swap_a(t_push_list **list);
+void			swap_b(t_push_list **list);
+void			swap_c(t_push_list **list_a, t_push_list **list_b);
+void			push(t_push_list **src, t_push_list **dest, char src_list);
+void			rotate_a(t_push_list **list);
+void			rotate_b(t_push_list **list);
+void			rotate_c(t_push_list **list_a, t_push_list **list_b);
+void			reverse_rotate_a(t_push_list **list);
+void			reverse_rotate_b(t_push_list **list);
+void			reverse_rotate_c(t_push_list **list_a, t_push_list **list_b);
 
+int				ft_list_len(t_push_list *list);
 t_push_list		*ft_lastnode(t_push_list *list);
 int				ft_check_sorted(t_push_list *list);
+t_push_list		*find_max(t_push_list *list);
+t_push_list		*find_min(t_push_list *list);
+void			ft_sort(t_push_list **list_a);
+void			ft_sort_three(t_push_list **list);
 
 #endif

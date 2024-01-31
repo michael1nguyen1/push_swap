@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_make_array_int.c                                :+:      :+:    :+:   */
+/*   assign_index.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 14:30:50 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/08 14:35:02 by linhnguy         ###   ########.fr       */
+/*   Created: 2024/01/26 13:58:27 by linhnguy          #+#    #+#             */
+/*   Updated: 2024/01/28 18:28:42 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*ft_make_array_int(int argc, char **argv)
+void	ft_index_list(t_push_list *list)
 {
-	int		i;
-	int		*array_int;
+	t_push_list *min;
+	int			i;
 
-	array_int = NULL;
-	i = 0;
-	if (argc == 2)
-		array_int = ft_array_1(argv);
-	if (array_int == NULL)
-		return (NULL);
-	if (dup_check(array_int) == -1)
+	i = 1;
+	while (list->next != NULL)
 	{
-		free(array_int);
-		return (NULL);
+		min = find_min(list);
+		min->index = i;
+		i++;
+		list = list->next;
 	}
-	else
-		array_int = ft_array_2(argv);
-	if (array_int == NULL)
-		return (NULL);
-	if (dup_check(array_int) == -1)
-	{
-		free(array_int);
-		return (NULL);
-	}
-	return (array_int);
 }

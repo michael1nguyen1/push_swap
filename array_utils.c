@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:39:05 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/25 19:02:21 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:25:59 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,17 @@ int	ft_check_alpha(char **str)
 	}
 	return (0);
 }
-t_push_list *ft_lastnode(t_push_list *list)
+int	ft_check(char **str, int check)
 {
-	while (list->next != NULL)
-		list = list->next;
-	return(list);
+	if (str == NULL)
+		return (-1);
+	if (dup_check(str) == -1)
+	{
+		if (check == 1)
+			free(str);
+		return (-1);
+	}
+	if (ft_check_alpha(str) == -1)
+		return (-1);
+	return (0);
 }

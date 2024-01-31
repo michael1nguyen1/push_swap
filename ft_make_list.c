@@ -6,11 +6,26 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:41:48 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/24 13:48:23 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/01/28 21:25:38 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+long	ft_int_to_list(char *str)
+{
+	int			i;
+	long		check;
+
+	i = 0;
+	check = ft_atol(str);
+	if (check > INT_MAX || check < INT_MIN)
+	{
+		free(str);
+		return (-1);
+	}
+	return (check);
+}
 
 t_push_list	*ft_make_list(char **array)
 {
