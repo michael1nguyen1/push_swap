@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:03:04 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/26 16:03:19 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/03 14:21:28 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void reverse_rotate_a(t_push_list **list)
     last->prev = NULL;
     (*list)->prev = last;
     *list = last;
-    write(1, "rra\n", 3);
+    write(1, "rra\n", 4);
 }
 
 void reverse_rotate_b(t_push_list **list)
@@ -67,7 +67,7 @@ void reverse_rotate_b(t_push_list **list)
     last->prev = NULL;
     (*list)->prev = last;
     *list = last;
-    write(1, "rrb\n", 3);
+    write(1, "rrb\n", 4);
 }
 
 void reverse_rotate_c(t_push_list **list_a, t_push_list **list_b)
@@ -86,5 +86,5 @@ void reverse_rotate_c(t_push_list **list_a, t_push_list **list_b)
     last->prev = NULL;
     (*list_b)->prev = last;
     *list_b = last;
-    write(1, "rrr\n", 3);
+    write(1, "rrr\n", 4);
 }

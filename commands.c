@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:17:24 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/30 14:16:13 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:17:27 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void push(t_push_list **src, t_push_list **dest, char src_list)
         *dest = *src;
         *src = (*src)->next;
         (*dest)->next = NULL;
+        (*dest)->prev = NULL;
         (*src)->prev = NULL;
     }
     else
@@ -77,12 +78,14 @@ void push(t_push_list **src, t_push_list **dest, char src_list)
         temp->next = *dest;
         (*dest)->prev = temp;
         *dest = temp;
-        (*src)->prev = NULL;
+        (*dest)->prev = NULL;
+        if (*src)
+            (*src)->prev = NULL;
     }
     if (src_list == 'a')
-        write(1, "pa\n", 3);
-    else if(src_list == 'b')
         write(1, "pb\n", 3);
+    else if(src_list == 'b')
+        write(1, "pa\n", 3);
 }
 
 void rotate_a(t_push_list **list)

@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:41:48 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/28 21:25:38 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/04 17:23:52 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ long	ft_int_to_list(char *str)
 	if (check > INT_MAX || check < INT_MIN)
 	{
 		free(str);
-		return (-1);
+		return (LONG_MAX);
 	}
 	return (check);
 }
@@ -40,7 +40,7 @@ t_push_list	*ft_make_list(char **array)
 		return (list);
 	check = ft_int_to_list(array[i]);
 	newnode = malloc(sizeof(t_push_list));
-	if (!newnode || check == -1)
+	if (!newnode || check == LONG_MAX)
 		return (NULL);
 	newnode->num = check;
 	newnode->next = NULL;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   array_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:39:05 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/01/26 13:25:59 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/04 13:40:53 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,30 +61,38 @@ int	ft_check_alpha(char **str)
 	int	j;
 
 	i = 0;
-	j = 0;
-
 	while (str[i])
 	{
+		j = 0;
 		while (str[i][j])
 		{
-			if (ft_isdigit(str[i][j++]) == 0)
+			if (str[i][j] == '-' || str[i][j] == '+')
+				j++;
+			if (ft_isdigit(str[i][j]) == 0)
 				return (-1);
+			j++;
 		}
 		i++;
 	}
 	return (0);
 }
-int	ft_check(char **str, int check)
+int	ft_check(char **str)
 {
 	if (str == NULL)
 		return (-1);
 	if (dup_check(str) == -1)
-	{
-		if (check == 1)
-			free(str);
 		return (-1);
-	}
 	if (ft_check_alpha(str) == -1)
 		return (-1);
 	return (0);
+}
+char **free_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		free(array[i++]);
+	free(array);
+	return (NULL);
 }
