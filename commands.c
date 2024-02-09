@@ -6,22 +6,23 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:17:24 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/07 17:17:27 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:07:42 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void swap_a(t_push_list **list)
+void swap_a(t_push_list **first)
 {
-    t_push_list *temp;
+    t_push_list *second;
 
-    temp = (*list)->next;
-    (*list)->next = temp->next;
-    temp->next = *list;
-    (*list)->prev = temp;
-    temp->prev = NULL;
-    *list = temp;
+    second = (*first)->next;
+    (*first)->next = second->next;
+    (*first)->next->prev = (*first);
+    second->next = *first;
+    (*first)->prev = second;
+    second->prev = NULL;
+    *first = second;
     write(1, "sa\n", 3);
 }
 
@@ -31,6 +32,7 @@ void swap_b(t_push_list **list)
 
     temp = (*list)->next;
     (*list)->next = temp->next;
+    (*list)->next->prev = (*list);
     temp->next = *list;
     (*list)->prev = temp;
     temp->prev = NULL;
@@ -45,12 +47,14 @@ void swap_c(t_push_list **list_a, t_push_list **list_b)
 
     temp = (*list_a)->next;
     (*list_a)->next = temp->next;
+    (*list_a)->next->prev = (*list_a);
     temp->next = *list_a;
     (*list_a)->prev = temp;
     temp->prev = NULL;
     *list_a = temp;
     temp2 = (*list_b)->next;
     (*list_b)->next = temp2->next;
+    (*list_b)->next->prev = (*list_b);
     temp2->next = *list_b;
     (*list_b)->prev = temp2;
     temp2->prev = NULL;

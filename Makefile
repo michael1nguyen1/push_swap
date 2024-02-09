@@ -6,7 +6,7 @@
 #    By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 12:01:31 by linhnguy          #+#    #+#              #
-#    Updated: 2024/02/06 16:13:02 by linhnguy         ###   ########.fr        #
+#    Updated: 2024/02/08 22:07:49 by linhnguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(NAME):$(OBJS)
 
 run: re
 	@$(CC) main.c $(NAME) -o push_swap
-	./push_swap 900 700 -1 5 6 7 12 844 -99
+	./push_swap
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@

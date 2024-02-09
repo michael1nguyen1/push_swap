@@ -1,51 +1,35 @@
 
 #include "push_swap.h"
 
-void ft_print_intlist(t_push_list *longlist, t_push_list *shortlist)
+void ft_print_intlist(t_push_list *a, t_push_list *b)
 {
 	t_push_list *temp;
-	temp = longlist;
-	while(longlist)
+	temp = a;
+	while(a)
 	{
-		printf("Long list\n num:%d index:%d median:%d target_num: %d cost:%d \n", longlist->num , longlist->index, longlist->median, longlist->target->num, longlist->cost);
-		longlist = longlist->next;
+		printf("A list\n num:%d index:%d median:%d target_num: %d cost:%d \n", a->num , a->index, a->median, a->target->num, a->cost);
+		a = a->next;
 	}
-	longlist = temp;
+	a = temp;
 
-	if(!shortlist)
+	// if(!b)
+	// 	return;
+	// temp = b;
+	// while(b)
+	// {
+	// 	printf("B list\n num:%d index:%d median:%d target_num: %d cost:%d\n", b->num , b->index, b->median, b->target->num, b->cost);
+	// 	b = b->next;
+	// }
+	// b = temp;
+
+
+	if(!b)
 		return;
-	temp = shortlist;
-	while(shortlist)
+	temp = b;
+	while(b)
 	{
-		printf("Short list\n num:%d index:%d median:%d target_num: %d cost:%d\n", shortlist->num , shortlist->index, shortlist->median, shortlist->target->num, shortlist->cost);
-		shortlist = shortlist->next;
+		printf("B list\n num:%d index:%d median:%d cost:%d\n", b->num , b->index, b->median, b->cost);
+		b = b->next;
 	}
-	shortlist = temp;
-	// while(list)
-	// {
-	// 	printf("index: %d\n", list->index);
-	// 	list = list->next;
-	// }
-	// list = temp;
-	
-	// while(list)
-	// {
-	// 	printf("median: %d\n", list->median);
-	// 	list = list->next;
-	// }
-	// list = temp;
-	// while(list)
-	// {
-	// 	printf("cost: %d\n", list->cost);
-	// 	list = list->next;
-	// }
-	// list = temp;
-
-	// while(list)
-	// {
-	// 	printf("target: %d\n", list->target->num);
-	// 	list = list->next;
-	// }
-	// list = temp;
-
+	b = temp;
 }

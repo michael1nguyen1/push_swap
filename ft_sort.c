@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:17:09 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/07 17:25:50 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:04:02 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ t_push_list **ft_algo_a(t_push_list **a, t_push_list **b)
 {
 	t_push_list			*cheapest;
 	int					len;
-
+int h = 1;
 	len = ft_list_len(*a);
 	while (len > 3)
 	{
-		// printf("\nlen is: %i \nfirst node of A is: %i | first node of B: %i\n\n", len, (*a)->num, (*b)->num);
-// ft_print_intlist(*a, *b);
+		printf("\nthis is the %i time\n", h); 
+	h++;
+		printf("\nfirst node of A is: %i | first node of B: %i\n\n", (*a)->num, (*b)->num);
+	ft_print_intlist(*a, *b);
 		cheapest = ft_cheapest(*a);
 		if(cheapest->cost == 0)
 			push(a, b, 'a');
@@ -94,82 +96,79 @@ t_push_list **ft_algo_a(t_push_list **a, t_push_list **b)
 t_push_list **ft_algo_b(t_push_list **a, t_push_list **b)
 {
 	t_push_list			*cheapest;
-	int h = 1;
-	while (*a)
+	// int h = 1;
+	while (*b)
 	{
-	printf("\nthis is the %i time\n", h); 
-	h++;
-		printf("\nfirst node of A is: %i | first node of B: %i\n\n", (*a)->num, (*b)->num);
-	ft_print_intlist(*a, *b);
-		cheapest = ft_cheapest(*a);
+	// printf("\nthis is the %i time\n", h); 
+	// h++;
+	// 	printf("\nfirst node of A is: %i | first node of B: %i\n\n", (*a)->num, (*b)->num);
+	// ft_print_intlist(*a, *b);
+		cheapest = ft_cheapest(*b);
 		if(cheapest->cost == 0)
-			push(a, b, 'b');
+			push(b, a, 'b');
 		else if(cheapest->median && cheapest->target->median)
 			{
-				while (cheapest != *a && cheapest->target != *b)
+				while (cheapest != *b && cheapest->target != *a)
 					rotate_c(a ,b);
-				while (cheapest != *a || cheapest->target != *b)
+				while (cheapest != *b || cheapest->target != *a)
 				{
-					if (cheapest != *a)
-						rotate_a(a);
-					if (cheapest->target != *b)
+					if (cheapest != *b)
 						rotate_b(b);
+					if (cheapest->target != *a)
+						rotate_a(a);
 				}
-			push(a, b, 'b');
+			push(b, a, 'b');
 			}
 		else if(!cheapest->median && !cheapest->target->median)
 			{
-				while (cheapest != *a && cheapest->target != *b)
+				while (cheapest != *b && cheapest->target != *a)
 					reverse_rotate_c(a, b);
-				while (cheapest != *a || cheapest->target != *b)
+				while (cheapest != *b || cheapest->target != *a)
 				{
-					if (cheapest != *a)
-						reverse_rotate_a(a);
-					if (cheapest->target != *b)
+					if (cheapest != *b)
 						reverse_rotate_b(b);
+					if (cheapest->target != *a)
+						reverse_rotate_a(a);
 				}
-			push(a, b, 'b');
+			push(b, a, 'b');
 			}
 		else
 		{
-			while (cheapest != *a && cheapest->target != *b)
+			while (cheapest != *b && cheapest->target != *a)
 			{	
 				if (cheapest->median)
 				{	
-					rotate_a(a);
-					reverse_rotate_b(b);
-				}
-				else
-				{
 					rotate_b(b);
 					reverse_rotate_a(a);
 				}
+				else
+				{
+					rotate_a(a);
+					reverse_rotate_b(b);
+				}
 			}
-			while (cheapest != *a || cheapest->target != *b)
+			while (cheapest != *b || cheapest->target != *a)
 			{	
-				if (cheapest == *a)
+				if (cheapest == *b)
 					{
 						if (cheapest->target->median)
-							rotate_b(b);
-						else
-							reverse_rotate_b(b);
-					}
-				else
-					{
-						if (cheapest->median)
 							rotate_a(a);
 						else
 							reverse_rotate_a(a);
 					}
+				else
+					{
+						if (cheapest->median)
+							rotate_b(b);
+						else
+							reverse_rotate_b(b);
+					}
 			}
-			push(a, b, 'b');
+			push(b, a, 'b');
 		}
 		if (*b)
 			ft_set_node_b(a, b);
 	}
-		// printf("\nAfter \n\n");
-		// printf("\nlen is: %i \nfirst node of A is: %i | first node of B: %i\n\n", len, (*a)->num, (*b)->num);
-		ft_print_intlist(*a, 0);
 	return(a);
 }
 
@@ -296,7 +295,21 @@ void	ft_index(t_push_list *list, int len)
 	}
 	list = tmp;
 }
-
+t_push_list **ft_min_to_top(t_push_list **a)
+{
+	t_push_list	*min;
+	
+	min = find_min(*a);
+	ft_index(*a, ft_list_len(*a));
+	while (min != *a)
+	{
+		if (min->median)
+			rotate_a(a);
+		else
+			reverse_rotate_a(a);
+	}
+	return (a);
+}
 void	ft_target_b(t_push_list *a, t_push_list *b)
 
 {
@@ -311,7 +324,7 @@ void	ft_target_b(t_push_list *a, t_push_list *b)
 		dif = UINT_MAX;
 		while(a)
 		{
-			if ((b->num < a->num) && (a->num - b->num < dif))
+			if ((b->num < a->num) && ((long)a->num < dif + b->num))
 			{
 				dif = a->num - b->num;
 				b->target = a;
@@ -399,24 +412,20 @@ void	ft_big_sort(t_push_list **a, t_push_list **b, int len_a)
 		}
 	ft_set_node_a(a, b);
 	ft_algo_a(a, b);
-	ft_sort_three(a);
+	if(!ft_check_sorted(*a))
+		ft_sort_three(a);
+	ft_set_node_b(a,b);
+	// printf(" \nBefore Algo_b first node of A is: %i\n\n", (*a)->num);
+	ft_algo_b(a, b);
+	ft_min_to_top(a);
+	// ft_print_intlist(*a, *b);
 	// if(!ft_check_sorted(*a))
 	// 	{ft_printf("FAILED");
 	// 	return ;
 	// 	}
 	// else
 	// 	ft_printf("PASSED");
-	ft_set_node_b(a,b);
-	printf(" \nfirst node of A is: %i | first node of B: %i\n\n", (*a)->num, (*b)->num);
-	printf("\ncost set for b\n\n");
-	ft_print_intlist(*a, *b);
-	ft_algo_b(b,a);
-	// push(b, a, 'b');
-	// push(b, a, 'b');
-	// push(b, a, 'b');
-	printf("\nFinal list\n\n");
-	ft_print_intlist(*a, 0);
-	return ;
+	// return ;
 }
 void ft_sort_three(t_push_list **list)
 {
