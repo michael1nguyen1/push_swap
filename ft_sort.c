@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:17:09 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/09 16:04:02 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/09 16:28:29 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ t_push_list **ft_algo_a(t_push_list **a, t_push_list **b)
 {
 	t_push_list			*cheapest;
 	int					len;
-int h = 1;
+// int h = 1;
 	len = ft_list_len(*a);
 	while (len > 3)
 	{
-		printf("\nthis is the %i time\n", h); 
-	h++;
-		printf("\nfirst node of A is: %i | first node of B: %i\n\n", (*a)->num, (*b)->num);
-	ft_print_intlist(*a, *b);
+	// 	printf("\nthis is the %i time\n", h); 
+	// h++;
+	// 	printf("\nfirst node of A is: %i | first node of B: %i\n\n", (*a)->num, (*b)->num);
+	// ft_print_intlist(*a, *b);
 		cheapest = ft_cheapest(*a);
 		if(cheapest->cost == 0)
 			push(a, b, 'a');
@@ -196,7 +196,7 @@ t_push_list	*ft_cheapest(t_push_list *a)
 	return(cheapest_node);
 }
 
-void	ft_cost_a(t_push_list *a, t_push_list*b, int len_a, int len_b)
+void	ft_cost_a(t_push_list *a, int len_a, int len_b)
 {
 	t_push_list	*tmp;
 	int		len_difa;
@@ -225,15 +225,15 @@ void	ft_cost_a(t_push_list *a, t_push_list*b, int len_a, int len_b)
 		else
 		{
 			if(a->median && !a->target->median)
-				a->cost = a->index + (len_b - a->target->index);
+				a->cost = a->index + len_difb;
 			else
-				a->cost = b->index + (len_a - a->index);
+				a->cost = a->target->index + len_difa;
 		}
 		a = a->next;
 	}
 	a = tmp;
 }
-void	ft_cost_b(t_push_list *a, t_push_list*b, int len_a, int len_b)
+void	ft_cost_b(t_push_list*b, int len_a, int len_b)
 {
 	t_push_list	*tmp;
 	int		len_difa;
@@ -264,7 +264,7 @@ void	ft_cost_b(t_push_list *a, t_push_list*b, int len_a, int len_b)
 			if(b->median && !b->target->median)
 				b->cost = b->index + (len_a - b->target->index);
 			else
-				b->cost = a->index + (len_b - b->index);
+				b->cost = b->target->index + (len_b - b->index);
 		}
 		b = b->next;
 	}
@@ -378,7 +378,7 @@ void	ft_set_node_a(t_push_list **a, t_push_list **b)
 	ft_index(*a, len_a);
 	ft_index(*b, len_b);
 	ft_target_a(*a, *b);
-	ft_cost_a(*a, *b, len_a, len_b);
+	ft_cost_a(*a, len_a, len_b);
 }
 
 void	ft_set_node_b(t_push_list **a, t_push_list **b)
@@ -391,7 +391,7 @@ void	ft_set_node_b(t_push_list **a, t_push_list **b)
 	ft_index(*a, len_a);
 	ft_index(*b, len_b);
 	ft_target_b(*a, *b);
-	ft_cost_b(*a, *b, len_a, len_b);
+	ft_cost_b(*b, len_a, len_b);
 }
 
 void	ft_big_sort(t_push_list **a, t_push_list **b, int len_a)
