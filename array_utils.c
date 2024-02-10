@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:39:05 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/04 13:40:53 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:21:47 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ int	ft_check_alpha(char **str)
 }
 int	ft_check(char **str)
 {
-	if (str == NULL)
-		return (-1);
+	// if (str == NULL)
+	// 	return (-1);
 	if (dup_check(str) == -1)
 		return (-1);
 	if (ft_check_alpha(str) == -1)

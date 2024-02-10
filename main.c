@@ -6,10 +6,11 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:28:00 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/04 13:37:46 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:55:27 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _CRTDBG_MAP_ALLOC
 #include "push_swap.h"
 
 int	main(int argc, char **argv)

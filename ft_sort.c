@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:17:09 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/09 16:28:29 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:45:16 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -400,16 +400,22 @@ void	ft_big_sort(t_push_list **a, t_push_list **b, int len_a)
 	{	
 		push(a, b, 'a');
 		ft_sort_three(a);
-		return ;
+		ft_set_node_b(a,b);
+		ft_algo_b(a, b);
+		ft_min_to_top(a);
 	}
 	else
+	{	
 		push(a, b, 'a');
 		push(a, b, 'a');
 		if (len_a - 2 == 3)
 		{	
 			ft_sort_three(a);
-			return;
+			ft_set_node_b(a,b);
+			ft_algo_b(a, b);
+			ft_min_to_top(a);
 		}
+	}
 	ft_set_node_a(a, b);
 	ft_algo_a(a, b);
 	if(!ft_check_sorted(*a))
@@ -418,15 +424,8 @@ void	ft_big_sort(t_push_list **a, t_push_list **b, int len_a)
 	// printf(" \nBefore Algo_b first node of A is: %i\n\n", (*a)->num);
 	ft_algo_b(a, b);
 	ft_min_to_top(a);
-	// ft_print_intlist(*a, *b);
-	// if(!ft_check_sorted(*a))
-	// 	{ft_printf("FAILED");
-	// 	return ;
-	// 	}
-	// else
-	// 	ft_printf("PASSED");
-	// return ;
 }
+	
 void ft_sort_three(t_push_list **list)
 {
 	t_push_list	*max;

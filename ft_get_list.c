@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:30:50 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/08 21:11:14 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/10 18:22:24 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@ t_push_list	*ft_get_list(int argc, char **argv)
 	if (argc == 2)
 	{
 		str = ft_split(argv[1], ' ');
+		if(!str)
+			return (NULL);
 		if (ft_check(str) == -1)
 		{	
 			free_array(str);
 			return (NULL);
 		}
 		list = ft_make_list(str);
+		if (list == NULL)
+			return (NULL);
 		free_array(str);
 		return(list);
 	}
