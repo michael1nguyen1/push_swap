@@ -6,7 +6,7 @@
 #    By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 12:01:31 by linhnguy          #+#    #+#              #
-#    Updated: 2024/02/12 21:00:39 by linhnguy         ###   ########.fr        #
+#    Updated: 2024/02/13 22:01:24 by linhnguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,10 @@ NAME = libftpush.a
 LIBFT = libft.a
 LIBFTDIR = libft
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3
-SRCS = ft_get_list.c array_utils.c list_utils.c ft_make_list.c commands.c ft_sort.c commands2.c ft_print_intlist.c
+CFLAGS = -Wall -Wextra -Werror 
+SRCS =	get_list.c array_utils.c list_utils.c make_list.c commands.c sort.c \
+		commands2.c set_node_a.c set_node_b.c set_node_utils.c				\
+		sort_utils.c algo_a_utils.c algo_b_utils.c
 OBJS = $(SRCS:.c=.o)
 AR = ar rcs
 RM = rm -f
@@ -25,14 +27,12 @@ all: $(NAME)
 $(NAME):$(OBJS)
 	@make -C $(LIBFTDIR)
 	@cp $(LIBFTDIR)/$(LIBFT) $(NAME)
-	$(AR) $(NAME) $(OBJS)
-
-run: re
-	@$(CC) $(CFLAGS) main.c $(NAME) -o push_swap
-	./push_swap 2 1 3 4
+	@$(AR) $(NAME) $(OBJS)
+	@$(CC) $(CFLAGS) push_swap.c $(NAME) -o push_swap
+	@echo "Program Made"
 
 debug: re
-	@$(CC) $(CFLAGS) -fsanitize=address main.c $(NAME) -o push_swap
+	@$(CC) $(CFLAGS) -fsanitize=address -g3 push_swap.c $(NAME) -o push_swap
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -45,6 +45,6 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@make -C $(LIBFTDIR) fclean
-	@echo "Fully cleaned the project"
+	@echo "Fully Cleaned"
 
 re: fclean all
