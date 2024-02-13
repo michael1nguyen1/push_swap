@@ -6,16 +6,16 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:45:25 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/06 18:08:36 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:26:16 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdlib.h>
 # include <stdio.h> // remove
 # include <unistd.h>
-# include <stdlib.h>
 # include <stdbool.h>
 # include <limits.h>
 # include "libft/libft.h"
@@ -39,8 +39,10 @@ int				dup_check(char **array_int);
 int				ft_check_alpha(char **str);
 t_push_list		*ft_get_list(int argc, char **argv);
 int				ft_check(char **str);
+// t_push_list		*ft_make_list_no_split(char **array);
 long			ft_int_to_list(char *str);
 t_push_list		*ft_make_list(char **array_int);
+void			free_list(t_push_list *list);
 
 void 			swap_a(t_push_list **list);
 void			swap_b(t_push_list **list);

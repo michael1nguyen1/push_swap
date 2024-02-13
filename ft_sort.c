@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:17:09 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/09 17:45:16 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/12 21:04:06 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,9 +324,9 @@ void	ft_target_b(t_push_list *a, t_push_list *b)
 		dif = UINT_MAX;
 		while(a)
 		{
-			if ((b->num < a->num) && ((long)a->num < dif + b->num))
+			if ((b->num < a->num) && ((long)a->num - (long)b->num < dif ))
 			{
-				dif = a->num - b->num;
+				dif =(long)a->num - (long)b->num;
 				b->target = a;
 			}
 			a = a->next;
@@ -353,7 +353,7 @@ void	ft_target_a(t_push_list *a, t_push_list *b)
 		dif = UINT_MAX;
 		while(b)
 		{
-			if ((b->num < a->num) && (a->num - b->num < dif))
+			if ((b->num < a->num) && ((long)a->num - (long)b->num < dif))
 			{
 				dif = a->num - b->num;
 				a->target = b;
@@ -399,10 +399,12 @@ void	ft_big_sort(t_push_list **a, t_push_list **b, int len_a)
 	if (len_a == 4)
 	{	
 		push(a, b, 'a');
-		ft_sort_three(a);
+		if(!ft_check_sorted(*a))
+			ft_sort_three(a);
 		ft_set_node_b(a,b);
 		ft_algo_b(a, b);
 		ft_min_to_top(a);
+		return;
 	}
 	else
 	{	
@@ -410,10 +412,12 @@ void	ft_big_sort(t_push_list **a, t_push_list **b, int len_a)
 		push(a, b, 'a');
 		if (len_a - 2 == 3)
 		{	
-			ft_sort_three(a);
+			if(!ft_check_sorted(*a))
+				ft_sort_three(a);
 			ft_set_node_b(a,b);
 			ft_algo_b(a, b);
 			ft_min_to_top(a);
+			return ;
 		}
 	}
 	ft_set_node_a(a, b);
@@ -421,7 +425,6 @@ void	ft_big_sort(t_push_list **a, t_push_list **b, int len_a)
 	if(!ft_check_sorted(*a))
 		ft_sort_three(a);
 	ft_set_node_b(a,b);
-	// printf(" \nBefore Algo_b first node of A is: %i\n\n", (*a)->num);
 	ft_algo_b(a, b);
 	ft_min_to_top(a);
 }
@@ -459,10 +462,14 @@ void ft_sort(t_push_list **a, t_push_list **b)
 	{
 		list_len = ft_list_len(*a);
 		if (list_len == 2)
-			swap_a(a);
+				swap_a(a);
 		else if(list_len == 3)
 			ft_sort_three(a);
 		else
 			ft_big_sort(a, b, list_len);
+	// 	if(!ft_check_sorted(*a))
+	// 	printf("\nfailed\n");
+	// else
+	// 	printf("\npass\n");
 	}
 }

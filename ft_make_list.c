@@ -6,11 +6,28 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 15:41:48 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/09 18:01:29 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/11 15:31:11 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	free_list(t_push_list *list)
+{
+	t_push_list		*current;
+	t_push_list		*next;
+
+	if (!list)
+		return ;
+	while (!list)
+	{
+		current = list;
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	list = NULL;
+}
 
 long	ft_int_to_list(char *str)
 {
@@ -39,7 +56,9 @@ t_push_list	*ft_make_list(char **array)
 	newnode = malloc(sizeof(t_push_list));
 	if (!newnode || check == LONG_MAX)
 	{	
-		free_array(array);
+		if (check == LONG_MAX)
+			free(newnode);
+		free_list(list);
 		return (NULL);
 	}	
 	newnode->num = check;

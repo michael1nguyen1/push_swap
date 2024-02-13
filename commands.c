@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 14:17:24 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/08 19:07:42 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:59:29 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@ void swap_a(t_push_list **first)
 {
     t_push_list *second;
 
+    if (ft_list_len(*first) == 2)
+    {
+        second = (*first)->next;
+        second->next = *first;
+        second->prev = NULL;
+        (*first)->prev = second;
+        (*first)->next = NULL;
+        first = &second;
+    }
+    else
     second = (*first)->next;
     (*first)->next = second->next;
     (*first)->next->prev = (*first);
@@ -26,18 +36,28 @@ void swap_a(t_push_list **first)
     write(1, "sa\n", 3);
 }
 
-void swap_b(t_push_list **list)
+void swap_b(t_push_list **first)
 {
-    t_push_list *temp;
+    t_push_list *second;
 
-    temp = (*list)->next;
-    (*list)->next = temp->next;
-    (*list)->next->prev = (*list);
-    temp->next = *list;
-    (*list)->prev = temp;
-    temp->prev = NULL;
-    *list = temp;
-    write(1, "sb\n", 3);
+    if (ft_list_len(*first) == 2)
+    {
+        second = (*first)->next;
+        second->next = *first;
+        second->prev = NULL;
+        (*first)->prev = second;
+        (*first)->next = NULL;
+        first = &second;
+    }
+    else
+        second = (*first)->next;
+        (*first)->next = second->next;
+        (*first)->next->prev = (*first);
+        second->next = *first;
+        (*first)->prev = second;
+        second->prev = NULL;
+        *first = second;
+        write(1, "sb\n", 3);
 }
 
 void swap_c(t_push_list **list_a, t_push_list **list_b)

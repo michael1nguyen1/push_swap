@@ -6,14 +6,14 @@
 #    By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 15:25:18 by linhnguy          #+#    #+#              #
-#    Updated: 2024/01/08 14:54:23 by linhnguy         ###   ########.fr        #
+#    Updated: 2024/02/11 14:15:05 by linhnguy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 CC = cc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 SRCS = 	ft_isalpha.c ft_isalnum.c ft_isdigit.c						\
 		ft_isascii.c ft_isprint.c ft_strlen.c						\
