@@ -6,7 +6,7 @@
 /*   By: linhnguy <linhnguy@hive.student.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:45:25 by linhnguy          #+#    #+#             */
-/*   Updated: 2024/02/13 21:56:31 by linhnguy         ###   ########.fr       */
+/*   Updated: 2024/02/16 09:00:38 by linhnguy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <stdio.h> // remove
 # include <unistd.h>
 # include <stdbool.h>
 # include <limits.h>
